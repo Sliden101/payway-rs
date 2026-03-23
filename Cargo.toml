@@ -9,7 +9,7 @@ repository = "https://github.com/Sliden101/payway-rs"
 authors = ["Sliden101 <sliden101@protonmail.com>"]
 homepage = "https://github.com/Sliden101/payway-rs"
 keywords = ["payway", "aba", "payment", "khqr", "cambodia"]
-categories = ["api-bindings", "e-commerce"]
+categories = ["api-bindings"]
 
 [features]
 default = ["rustls-tls", "rsa"]
