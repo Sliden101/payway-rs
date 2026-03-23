@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 description = "Unofficial Rust SDK for ABA PayWay Payment Gateway"
 readme = "README.md"
-license = "MIT"
-repository = "https://github.com/yourusername/payway-rs"
+license = "GPL-3.0-only"
+repository = "https://github.com/Sliden101/payway-rs"
+authors = ["Sliden101 <sliden101@protonmail.com>"]
+homepage = "https://github.com/Sliden101/payway-rs"
 keywords = ["payway", "aba", "payment", "khqr", "cambodia", "fintech"]
 categories = ["api-bindings", "e-commerce"]
 
