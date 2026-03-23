@@ -1,0 +1,51 @@
+[package]
+name = "payway"
+version = "0.1.0"
+edition = "2021"
+description = "Unofficial Rust SDK for ABA PayWay Payment Gateway"
+readme = "README.md"
+license = "MIT"
+repository = "https://github.com/yourusername/payway-rs"
+keywords = ["payway", "aba", "payment", "khqr", "cambodia", "fintech"]
+categories = ["api-bindings", "e-commerce"]
+
+[features]
+default = ["rustls-tls", "rsa"]
+rustls-tls = ["reqwest/rustls-tls"]
+native-tls = ["reqwest/native-tls"]
+rsa = ["dep:rsa"]
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json", "multipart"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+hmac = "0.12"
+sha2 = "0.10"
+base64 = "0.22"
+thiserror = "2.0"
+anyhow = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+rand = "0.8"
+pkcs8 = { version = "0.10", features = ["pem", "alloc"] }
+spki = { version = "0.7", features = ["pem"] }
+pkcs1 = { version = "0.7", features = ["pem", "pkcs8"] }
+
+[dependencies.rsa]
+version = "0.9"
+optional = true
+default-features = false
+features = ["sha2"]
+
+[dev-dependencies]
+tokio-test = "0.4"
+wiremock = "0.6"
+tempfile = "3"
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+strip = true
