@@ -49,8 +49,11 @@ impl PayWayClient {
         self.config.environment
     }
 
-    pub fn base_url(&self) -> &'static str {
-        self.config.base_url()
+    pub fn base_url(&self) -> &str {
+        self.config
+            .base_url
+            .as_deref()
+            .unwrap_or_else(|| self.config.environment.base_url())
     }
 
     pub fn is_sandbox(&self) -> bool {
@@ -70,7 +73,12 @@ impl PayWayClient {
         endpoint: &str,
         body: &T,
     ) -> Result<R> {
-        let url = format!("{}{}", self.base_url(), endpoint);
+        let base = self.base_url();
+        let url = if base.ends_with('/') {
+            format!("{}{}", base, endpoint)
+        } else {
+            format!("{}/{}", base, endpoint)
+        };
 
         debug!("POST {}", url);
 
@@ -103,7 +111,12 @@ impl PayWayClient {
         endpoint: &str,
         body: &T,
     ) -> Result<R> {
-        let url = format!("{}{}", self.base_url(), endpoint);
+        let base = self.base_url();
+        let url = if base.ends_with('/') {
+            format!("{}{}", base, endpoint)
+        } else {
+            format!("{}/{}", base, endpoint)
+        };
 
         debug!("POST (form) {}", url);
 

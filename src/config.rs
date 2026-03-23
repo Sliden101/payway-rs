@@ -51,6 +51,9 @@ pub struct PayWayConfig {
     /// RSA public key provided by ABA Bank for payout operations (optional)
     #[serde(skip_serializing_if = "Option::is_none")]
     pub rsa_public_key: Option<String>,
+    /// Custom base URL for testing (optional)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub base_url: Option<String>,
     /// Environment (sandbox or production)
     #[serde(default)]
     pub environment: Environment,
@@ -78,6 +81,7 @@ impl PayWayConfig {
             api_key: api_key.into(),
             rsa_private_key: None,
             rsa_public_key: None,
+            base_url: None,
             environment: Environment::Sandbox,
             timeout_secs: default_timeout(),
             max_retries: default_retries(),
@@ -91,6 +95,7 @@ impl PayWayConfig {
             api_key: api_key.into(),
             rsa_private_key: None,
             rsa_public_key: None,
+            base_url: None,
             environment: Environment::Production,
             timeout_secs: default_timeout(),
             max_retries: default_retries(),
@@ -105,6 +110,12 @@ impl PayWayConfig {
     ) -> Self {
         self.rsa_private_key = Some(private_key.into());
         self.rsa_public_key = Some(public_key.into());
+        self
+    }
+
+    /// Set custom base URL (useful for testing with WireMock)
+    pub fn with_base_url(mut self, url: impl Into<String>) -> Self {
+        self.base_url = Some(url.into());
         self
     }
 
