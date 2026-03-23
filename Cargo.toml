@@ -8,7 +8,7 @@ license = "GPL-3.0-only"
 repository = "https://github.com/Sliden101/payway-rs"
 authors = ["Sliden101 <sliden101@protonmail.com>"]
 homepage = "https://github.com/Sliden101/payway-rs"
-keywords = ["payway", "aba", "payment", "khqr", "cambodia", "fintech"]
+keywords = ["payway", "aba", "payment", "khqr", "cambodia"]
 categories = ["api-bindings", "e-commerce"]
 
 [features]
