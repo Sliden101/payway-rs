@@ -16,7 +16,7 @@ pub struct CompletePreAuthRequest {
 }
 
 impl CompletePreAuthRequest {
-    pub async fn new(
+    pub fn new(
         client: &PayWayClient,
         tran_id: impl Into<String>,
         complete_amount: f64,

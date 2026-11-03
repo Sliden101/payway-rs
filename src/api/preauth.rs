@@ -11,7 +11,7 @@ impl PayWayClient {
         tran_id: impl Into<String>,
         complete_amount: f64,
     ) -> Result<CompletePreAuthResponse> {
-        let request = CompletePreAuthRequest::new(self, tran_id, complete_amount).await?;
+        let request = CompletePreAuthRequest::new(self, tran_id, complete_amount)?;
         self.post(endpoint::PRE_AUTH_COMPLETE, &request).await
     }
 }

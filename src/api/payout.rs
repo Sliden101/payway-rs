@@ -14,7 +14,7 @@ impl PayWayClient {
         &self,
         payee: impl Into<String>,
     ) -> Result<AddBeneficiaryResponse> {
-        let request = AddBeneficiaryRequest::new(self, payee).await?;
+        let request = AddBeneficiaryRequest::new(self, payee)?;
         self.post(endpoint::ADD_BENEFICIARY, &request).await
     }
 
@@ -23,7 +23,7 @@ impl PayWayClient {
         payee: impl Into<String>,
         enable: bool,
     ) -> Result<UpdateBeneficiaryStatusResponse> {
-        let request = UpdateBeneficiaryStatusRequest::new(self, payee, enable).await?;
+        let request = UpdateBeneficiaryStatusRequest::new(self, payee, enable)?;
         self.post(endpoint::UPDATE_BENEFICIARY, &request).await
     }
 
@@ -34,7 +34,7 @@ impl PayWayClient {
         amount: f64,
         currency: impl Into<String>,
     ) -> Result<PayoutResponse> {
-        let request = PayoutApiRequest::new(self, tran_id, beneficiaries, amount, currency).await?;
+        let request = PayoutApiRequest::new(self, tran_id, beneficiaries, amount, currency)?;
         self.post(endpoint::PAYOUT, &request).await
     }
 }

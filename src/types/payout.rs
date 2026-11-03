@@ -17,7 +17,7 @@ pub struct AddBeneficiaryRequest {
 }
 
 impl AddBeneficiaryRequest {
-    pub async fn new(client: &PayWayClient, payee: impl Into<String>) -> Result<Self> {
+    pub fn new(client: &PayWayClient, payee: impl Into<String>) -> Result<Self> {
         let request_time = PayWayClient::generate_request_time();
         let merchant_id = client.merchant_id().to_string();
         let payee = payee.into();
@@ -74,7 +74,7 @@ pub struct PayoutRequest {
 }
 
 impl PayoutRequest {
-    pub async fn new(
+    pub fn new(
         client: &PayWayClient,
         tran_id: impl Into<String>,
         beneficiaries: Vec<PayoutBeneficiary>,
@@ -161,11 +161,7 @@ pub struct UpdateBeneficiaryStatusRequest {
 }
 
 impl UpdateBeneficiaryStatusRequest {
-    pub async fn new(
-        client: &PayWayClient,
-        payee: impl Into<String>,
-        enable: bool,
-    ) -> Result<Self> {
+    pub fn new(client: &PayWayClient, payee: impl Into<String>, enable: bool) -> Result<Self> {
         let request_time = PayWayClient::generate_request_time();
         let merchant_id = client.merchant_id().to_string();
         let payee = payee.into();
